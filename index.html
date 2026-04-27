@@ -9,11 +9,102 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="/src/styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="/vanta.globe.min.js"></script>
+    <style>
+      /* Fallback styles to ensure something shows */
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8fafc;
+        color: #1e293b;
+      }
+      .header {
+        background: white;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #059669;
+      }
+      .nav {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav a {
+        text-decoration: none;
+        color: #475569;
+        font-weight: 500;
+      }
+      .nav a:hover {
+        color: #059669;
+      }
+      .hero {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        font-family: 'Fraunces', serif;
+      }
+      .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+      .btn {
+        background: white;
+        color: #059669;
+        padding: 0.75rem 2rem;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        margin: 0.5rem;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Fallback content while React loads -->
+      <div class="header">
+        <div class="logo">LGV</div>
+        <nav class="nav">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/verticals">Verticals</a>
+          <a href="/ecosystem">Ecosystem</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div>
+          <h1>Growing a greener economy, one valley at a time.</h1>
+          <p>Laya Green Ventures combines profitable enterprise with deep community trust to drive climate action, equitable trade and ecological wealth across North Coastal Andhra Pradesh.</p>
+          <div>
+            <a href="/verticals" class="btn">Explore our verticals</a>
+            <a href="/about" class="btn">Our story</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
