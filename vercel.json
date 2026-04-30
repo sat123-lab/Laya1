@@ -8,7 +8,12 @@
   ],
   "routes": [
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/vanta.globe.min.js",
+      "dest": "/vanta.globe.min.js"
     },
     {
       "src": "/(.*)",
