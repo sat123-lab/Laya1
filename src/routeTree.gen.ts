@@ -10,8 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VerticalsRouteImport } from './routes/verticals'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as EcosystemRouteImport } from './routes/ecosystem'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as VerticalsTradeRouteImport } from './routes/verticals.trade'
@@ -24,6 +26,11 @@ const VerticalsRoute = VerticalsRouteImport.update({
   path: '/verticals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EcosystemRoute = EcosystemRouteImport.update({
   id: '/ecosystem',
   path: '/ecosystem',
@@ -32,6 +39,11 @@ const EcosystemRoute = EcosystemRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -68,8 +80,10 @@ const VerticalsCarbonRoute = VerticalsCarbonRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/ecosystem': typeof EcosystemRoute
+  '/team': typeof TeamRoute
   '/verticals': typeof VerticalsRouteWithChildren
   '/verticals/carbon': typeof VerticalsCarbonRoute
   '/verticals/ecotourism': typeof VerticalsEcotourismRoute
@@ -79,8 +93,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/ecosystem': typeof EcosystemRoute
+  '/team': typeof TeamRoute
   '/verticals': typeof VerticalsRouteWithChildren
   '/verticals/carbon': typeof VerticalsCarbonRoute
   '/verticals/ecotourism': typeof VerticalsEcotourismRoute
@@ -91,8 +107,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/ecosystem': typeof EcosystemRoute
+  '/team': typeof TeamRoute
   '/verticals': typeof VerticalsRouteWithChildren
   '/verticals/carbon': typeof VerticalsCarbonRoute
   '/verticals/ecotourism': typeof VerticalsEcotourismRoute
@@ -104,8 +122,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/ecosystem'
+    | '/team'
     | '/verticals'
     | '/verticals/carbon'
     | '/verticals/ecotourism'
@@ -115,8 +135,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/ecosystem'
+    | '/team'
     | '/verticals'
     | '/verticals/carbon'
     | '/verticals/ecotourism'
@@ -126,8 +148,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/ecosystem'
+    | '/team'
     | '/verticals'
     | '/verticals/carbon'
     | '/verticals/ecotourism'
@@ -138,8 +162,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   EcosystemRoute: typeof EcosystemRoute
+  TeamRoute: typeof TeamRoute
   VerticalsRoute: typeof VerticalsRouteWithChildren
 }
 
@@ -150,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/verticals'
       fullPath: '/verticals'
       preLoaderRoute: typeof VerticalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ecosystem': {
@@ -164,6 +197,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -232,8 +272,10 @@ const VerticalsRouteWithChildren = VerticalsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   EcosystemRoute: EcosystemRoute,
+  TeamRoute: TeamRoute,
   VerticalsRoute: VerticalsRouteWithChildren,
 }
 export const routeTree = rootRouteImport

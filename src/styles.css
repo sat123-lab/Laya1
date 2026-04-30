@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -106,3 +106,138 @@
   50% { transform: translateY(-8px); }
 }
 .animate-float { animation: float 4s ease-in-out infinite; }
+
+/* Nest Hub specific adjustments (1024x600) */
+@media screen and (width: 1024px) and (height: 600px) {
+  /* Adjust hero section for Nest Hub */
+  .relative.h-screen.min-h-\[600px\] {
+    min-height: 600px;
+    height: 100vh;
+  }
+  
+  /* Adjust text sizes for better readability on Nest Hub */
+  .font-display.text-4xl.sm\:text-5xl.md\:text-7xl.lg\:text-8xl {
+    font-size: 3.5rem;
+    line-height: 1.1;
+  }
+  
+  /* Adjust button sizes */
+  .inline-flex.items-center.justify-center.gap-2.px-5.py-3.sm\:px-6.sm\:py-3\.5 {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    min-height: 2.5rem;
+  }
+  
+  /* Adjust all buttons in hero section */
+  .mt-14.flex.flex-col.sm\:flex-row.sm\:flex-wrap .inline-flex {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    min-height: 2.5rem;
+  }
+  
+  /* Adjust CTA button */
+  button.mt-8.inline-flex {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    min-height: 2.5rem;
+  }
+  
+  /* Adjust spacing for compact layout */
+  .mt-14.flex.flex-col.sm\:flex-row.sm\:flex-wrap {
+    margin-top: 2rem;
+  }
+  
+  /* Adjust grid layouts for better fit */
+  .grid.grid-cols-1.sm\:grid-cols-2.lg\:grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  /* Adjust section padding */
+  .py-24 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Adjust image containers */
+  .aspect-\[4\/5\] {
+    aspect-ratio: 4/3;
+  }
+  
+  /* Adjust card layouts */
+  .lg\:col-span-2 {
+    grid-column: span 1;
+  }
+  
+  .lg\:col-span-3 {
+    grid-column: span 1;
+  }
+  
+  /* Adjust CTA section */
+  .relative.overflow-hidden.rounded-3xl.bg-gradient-leaf.p-10.md\:p-16 {
+    padding: 2rem;
+  }
+  
+  /* Adjust navigation and header spacing */
+  .max-w-7xl.mx-auto.px-4.sm\:px-5.lg\:px-8 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Desktop screen adjustments (1280px and above) */
+@media screen and (min-width: 1280px) {
+  /* Adjust hero text for desktop */
+  .font-display.text-4xl.sm\:text-5xl.md\:text-7xl.lg\:text-8xl {
+    font-size: 5rem;
+    line-height: 1.05;
+  }
+  
+  /* Adjust hero description width */
+  .mt-6.max-w-2xl {
+    max-width: 48rem;
+  }
+  
+  /* Adjust hero heading width */
+  .max-w-4xl {
+    max-width: 60rem;
+  }
+  
+  /* Adjust button alignment for desktop */
+  .mt-14.flex.flex-col.sm\:flex-row.sm\:flex-wrap.gap-2.sm\:gap-3.justify-center.sm\:justify-start {
+    justify-content: flex-start;
+  }
+
+  /* Adjust general button sizes for desktop */
+  .inline-flex.items-center.justify-center.gap-2.px-5.py-3.sm\:px-6.sm\:py-3\.5 {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 3rem;
+  }
+
+  /* Adjust all buttons in hero section for desktop */
+  .mt-14.flex.flex-col.sm\:flex-row.sm\:flex-wrap .inline-flex {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 3rem;
+  }
+
+  /* Adjust CTA button for desktop */
+  button.mt-8.inline-flex {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    min-height: 3rem;
+  }
+  
+  /* Adjust container padding for desktop */
+  .max-w-7xl.mx-auto.px-4.sm\:px-5.lg\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Adjust section spacing for desktop */
+  .py-24 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}

@@ -4,6 +4,7 @@ import imgCarbon from "@/assets/v1-carbon.jpg";
 import imgTrade from "@/assets/v2-trade.jpg";
 import imgEco from "@/assets/v3-ecotourism.jpg";
 import imgInc from "@/assets/v4-incubator.jpg";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/verticals")({
   head: () => ({
@@ -67,15 +68,127 @@ const verticals = [
 function VerticalsLayout() {
   const { pathname } = useLocation();
   const isIndex = pathname === "/verticals" || pathname === "/verticals/";
+  
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) rotateX(-10deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) rotateX(0);
+        }
+      }
+      
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px) rotateY(-15deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) rotateY(0);
+        }
+      }
+      
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px) rotateY(15deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) rotateY(0);
+        }
+      }
+      
+      @keyframes scaleIn3d {
+        from {
+          opacity: 0;
+          transform: scale(0.8) rotateX(-10deg);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) rotateX(0);
+        }
+      }
+      
+      .verticals-hero-3d {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+      }
+      
+      .verticals-grid-3d {
+        perspective: 1200px;
+        transform-style: preserve-3d;
+      }
+      
+      .vertical-card-3d {
+        transform-style: preserve-3d;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .vertical-card-3d:hover {
+        transform: rotateY(8deg) rotateX(-5deg) scale(1.05) translateZ(30px);
+        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+      }
+      
+      .vertical-icon-3d {
+        transform-style: preserve-3d;
+        transition: all 0.3s ease;
+      }
+      
+      .vertical-icon-3d:hover {
+        transform: rotateZ(10deg) scale(1.1);
+      }
+      
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+      }
+      
+      .animate-fade-in-up-delay {
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+      }
+      
+      .animate-slide-in-left {
+        animation: slideInLeft 0.8s ease-out;
+      }
+      
+      .animate-slide-in-right {
+        animation: slideInRight 0.8s ease-out;
+      }
+      
+      .animate-scale-in-3d {
+        animation: scaleIn3d 0.8s ease-out;
+      }
+    `;
+    if (!document.head.querySelector('style[data-verticals-animations]')) {
+      style.setAttribute('data-verticals-animations', 'true');
+      document.head.appendChild(style);
+    }
+    
+    return () => {
+      const existingStyle = document.head.querySelector('style[data-verticals-animations]');
+      if (existingStyle) {
+        existingStyle.remove();
+      }
+    };
+  }, []);
+  
   return (
     <>
-      <section className="bg-gradient-to-br from-[oklch(0.22_0.06_150)] to-[oklch(0.32_0.1_150)] text-white py-24">
+      <section className="bg-gradient-to-br from-[oklch(0.22_0.06_150)] to-[oklch(0.32_0.1_150)] text-white py-24 verticals-hero-3d">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <span className="text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] font-semibold">Business Verticals</span>
-          <h1 className="mt-4 font-display text-5xl md:text-7xl font-semibold leading-[1.05] max-w-4xl">
+          <span className="text-xs uppercase tracking-[0.3em] text-[var(--color-accent)] font-semibold animate-fade-in-up">Business Verticals</span>
+          <h1 className="mt-4 font-display text-5xl md:text-7xl font-semibold leading-[1.05] max-w-4xl animate-fade-in-up">
             Four pillars. <span className="italic text-gradient-leaf">One vision.</span>
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-white/85 max-w-3xl">
+          <p className="mt-6 text-lg md:text-xl text-white/85 max-w-3xl animate-fade-in-up-delay">
             Each vertical operates with its own logic and rhythm — but together they form an interconnected
             network of high-impact, regenerative enterprises.
           </p>
@@ -117,22 +230,25 @@ function VerticalsIndex() {
           </p>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-2 gap-7">
-          {verticals.map((v) => (
+        <div className="mt-14 grid md:grid-cols-2 gap-7 verticals-grid-3d">
+          {verticals.map((v, i) => (
             <article
               key={v.to}
-              className="group relative rounded-3xl bg-card border border-border overflow-hidden shadow-soft hover:shadow-glow hover:-translate-y-1 transition-all flex flex-col"
+              className="group relative rounded-3xl bg-card border border-border overflow-hidden shadow-soft hover:shadow-glow transition-all flex flex-col vertical-card-3d"
+              style={{
+                animation: `scaleIn3d 0.8s ease-out ${i * 0.1}s both`
+              }}
             >
               <div className="relative h-56 overflow-hidden">
                 <img
                   src={v.image}
                   alt={v.label}
                   loading="lazy"
-                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="h-full w-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div className="absolute top-4 left-4 flex items-center gap-2">
-                  <div className="h-10 w-10 rounded-xl bg-white/95 backdrop-blur flex items-center justify-center text-primary shadow-soft">
+                  <div className="h-10 w-10 rounded-xl bg-white/95 backdrop-blur flex items-center justify-center text-primary shadow-soft vertical-icon-3d">
                     <v.icon size={18} />
                   </div>
                   <span className="text-[11px] uppercase tracking-[0.25em] text-white/95 font-semibold bg-black/30 backdrop-blur px-2.5 py-1 rounded-full">
@@ -161,10 +277,10 @@ function VerticalsIndex() {
 
                 <Link
                   to={v.to}
-                  className="mt-6 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                  className="group mt-6 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-primary hover:gap-2.5 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                 >
                   Explore {v.label}
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </div>
             </article>
